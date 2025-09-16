@@ -37,9 +37,9 @@ nav a:hover {
     color: #fff;
 }
 
-/* Add padding to the main content to prevent it from being hidden by the fixed header */
+/* Fix for the main content being cut off by the header */
 main {
-    padding-top: 80px; /* Adjust this value if the header height changes */
+    padding-top: 80px; /* This value should be roughly the height of the header */
 }
 
 /* Parallax Backgrounds */
