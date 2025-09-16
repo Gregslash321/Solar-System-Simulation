@@ -163,3 +163,42 @@ main {
     margin-top: 100px;
     text-align: justify;
 }
+
+/* Add these styles to your existing style.css file */
+#planet-info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(25, 25, 51, 0.9);
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+    max-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    z-index: 200;
+}
+
+#planet-info.hidden {
+    display: none;
+}
+
+#planet-gif {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+#planet-name {
+    font-size: 2em;
+    margin: 0;
+    color: #8c8cff;
+}
+
+#planet-description {
+    font-size: 1em;
+    line-height: 1.5;
+}
