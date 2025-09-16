@@ -46,12 +46,28 @@ function setupSimulation() {
         { name: 'Neptune', distance: 480, radius: 14, color: '#4682B4', speed: 0.0015, angle: 0, description: 'Neptune is the eighth and farthest known planet from the Sun. It is an ice giant known for its powerful supersonic winds, the fastest in the Solar System.', gif: 'https://media.giphy.com/media/xT39Da5W1mR2hJ3K12/giphy.gif' }
     ];
 
+    // Variables for camera controls
     let scale = 1.0;
     let offsetX = 0;
     let offsetY = 0;
     let isDragging = false;
     let lastX = 0;
     let lastY = 0;
+
+    // Variables for the star field
+    const stars = [];
+    const numStars = 1000;
+    const starSpeed = 0.5;
+
+    function generateStars() {
+        for (let i = 0; i < numStars; i++) {
+            stars.push({
+                x: Math.random() * canvas.width - canvas.width / 2,
+                y: Math.random() * canvas.height - canvas.height / 2,
+                z: Math.random() * canvas.width,
+            });
+        }
+    }
 
     const planetInfoBox = document.getElementById('planet-info');
     const planetName = document.getElementById('planet-name');
@@ -64,6 +80,30 @@ function setupSimulation() {
         ctx.fillStyle = '#0d0d1a';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+        // --- Draw the moving star field ---
+        ctx.save();
+        ctx.translate(canvas.width / 2, canvas.height / 2);
+        stars.forEach(star => {
+            // Move the star towards the center (simulating flying through space)
+            star.z -= starSpeed;
+            if (star.z <= 0) {
+                star.z = canvas.width;
+                star.x = Math.random() * canvas.width - canvas.width / 2;
+                star.y = Math.random() * canvas.height - canvas.height / 2;
+            }
+
+            const starX = star.x / star.z * canvas.width;
+            const starY = star.y / star.z * canvas.height;
+            const starRadius = (1 - star.z / canvas.width) * 2;
+
+            ctx.beginPath();
+            ctx.arc(starX, starY, starRadius, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+            ctx.fill();
+        });
+        ctx.restore();
+
+        // --- Draw the solar system objects (planets and sun) ---
         ctx.save();
         ctx.translate(canvas.width / 2 + offsetX, canvas.height / 2 + offsetY);
         ctx.scale(scale, scale);
@@ -115,18 +155,15 @@ function setupSimulation() {
         const clickX = e.clientX - canvas.getBoundingClientRect().left;
         const clickY = e.clientY - canvas.getBoundingClientRect().top;
         
-        // Adjust for pan and zoom
         const transformedX = (clickX - (canvas.width / 2 + offsetX)) / scale;
         const transformedY = (clickY - (canvas.height / 2 + offsetY)) / scale;
         
         let foundPlanet = false;
 
-        // Check if a planet was clicked
         planets.forEach(planet => {
             const planetX = Math.cos(planet.angle) * planet.distance;
             const planetY = Math.sin(planet.angle) * planet.distance;
 
-            // Distance from click to planet center
             const distance = Math.sqrt((transformedX - planetX) ** 2 + (transformedY - planetY) ** 2);
             
             if (distance < planet.radius) {
@@ -139,7 +176,6 @@ function setupSimulation() {
             }
         });
         
-        // Check if the Sun was clicked
         const sunDistance = Math.sqrt((transformedX - 0) ** 2 + (transformedY - 0) ** 2);
         if (sunDistance < sun.radius) {
             foundPlanet = true;
@@ -149,51 +185,22 @@ function setupSimulation() {
             planetGif.src = sun.gif;
         }
 
-        // Hide info box if no planet was clicked
         if (!foundPlanet) {
             planetInfoBox.classList.add('hidden');
         }
     });
 
-    document.getElementById('toggle-rotation').addEventListener('click', () => {
-        rotationEnabled = !rotationEnabled;
-    });
+    // Add event listeners for pan and zoom
+    document.getElementById('toggle-rotation').addEventListener('click', () => { rotationEnabled = !rotationEnabled; });
+    document.addEventListener('mousedown', (e) => { isDragging = true; lastX = e.clientX; lastY = e.clientY; });
+    document.addEventListener('mousemove', (e) => { if (isDragging) { const deltaX = e.clientX - lastX; const deltaY = e.clientY - lastY; offsetX += deltaX; offsetY += deltaY; lastX = e.clientX; lastY = e.clientY; }});
+    document.addEventListener('mouseup', () => { isDragging = false; });
+    document.addEventListener('wheel', (e) => { e.preventDefault(); const zoomSpeed = 0.001; scale -= e.deltaY * zoomSpeed; if (scale < 0.1) scale = 0.1; if (scale > 5.0) scale = 5.0; });
+    window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
 
-    document.addEventListener('mousedown', (e) => {
-        isDragging = true;
-        lastX = e.clientX;
-        lastY = e.clientY;
-    });
-
-    document.addEventListener('mousemove', (e) => {
-        if (isDragging) {
-            const deltaX = e.clientX - lastX;
-            const deltaY = e.clientY - lastY;
-            offsetX += deltaX;
-            offsetY += deltaY;
-            lastX = e.clientX;
-            lastY = e.clientY;
-        }
-    });
-
-    document.addEventListener('mouseup', () => {
-        isDragging = false;
-    });
-
-    document.addEventListener('wheel', (e) => {
-        e.preventDefault();
-        const zoomSpeed = 0.001;
-        scale -= e.deltaY * zoomSpeed;
-        if (scale < 0.1) scale = 0.1;
-        if (scale > 5.0) scale = 5.0;
-    });
-
+    // Generate stars and start animation
+    generateStars();
     animate();
-    
-    window.addEventListener('resize', () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    });
 }
 
 // Check which page is loaded and run the correct function
