@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>اللوحة الكونية</title>
+    <title>Cosmic Canvas</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/x-icon" href="https://static.vecteezy.com/system/resources/previews/038/188/301/original/solar-system-vecto-icon-vector.jpg">
     <script src="script.js" defer></script>
 </head>
 <body>
@@ -14,34 +13,38 @@
     <div id="parallax-bg-3" class="parallax-bg"></div>
 
     <header>
-        <h1>اللوحة الكونية</h1>
+        <h1 id="site-title">Cosmic Canvas</h1>
         <nav>
-            <a href="index.html">الرئيسية</a>
-            <a href="simulation.html">المحاكاة</a>
-            <a href="about.html">حول</a>
+            <a href="index.html" id="nav-home">Home</a>
+            <a href="simulation.html" id="nav-sim">Simulation</a>
+            <a href="about.html" id="nav-about">About</a>
         </nav>
+        <div id="language-switcher">
+            <button onclick="changeLanguage('en')">EN</button>
+            <button onclick="changeLanguage('ar')">AR</button>
+        </div>
     </header>
 
     <main class="home-content">
         <section class="hero-section">
-            <h2 class="hero-tagline">حيث الكون هو لوحتك</h2>
-            <a href="simulation.html" class="launch-btn">تشغيل المحاكاة</a>
+            <h2 id="hero-tagline" class="hero-tagline">Where the Universe Is Your Palette.</h2>
+            <a href="simulation.html" id="launch-btn" class="launch-btn">Launch Simulation</a>
         </section>
 
         <section class="features-section">
             <div class="feature-card">
-                <h3>اكتشف</h3>
-                <p>سافر عبر نسخ مذهلة لأنظمة نجمية ومجرات وسدم حقيقية. اكتشف الكون من منظور جديد.</p>
+                <h3 id="feature-1-title">Explore</h3>
+                <p id="feature-1-desc">Journey through breathtaking replicas of real-world star systems, galaxies, and nebulae. Discover the cosmos from a new perspective.</p>
             </div>
             <div class="feature-card">
-                <h3>صمم</h3>
-                <p>ابن روائعك السماوية الخاصة. رتب الكواكب والنجوم والثقوب السوداء لإنشاء أنظمة شمسية فريدة وشاهدها وهي تنبض بالحياة.</p>
+                <h3 id="feature-2-title">Create</h3>
+                <p id="feature-2-desc">Build your own celestial masterpieces. Arrange planets, stars, and black holes to craft unique solar systems and watch them come to life.</p>
             </div>
             <div class="feature-card">
-                <h3>تعلم</h3>
-                <p>اغوص في قاعدة بيانات واسعة من المعرفة الكونية. تعلم عن العلم وراء الكواكب والنجوم والقوانين الأساسية التي تحكم الكون.</p>
+                <h3 id="feature-3-title">Learn</h3>
+                <p id="feature-3-desc">Dive into a vast database of cosmic knowledge. Learn about the science behind planets, stars, and the fundamental laws that govern the universe.</p>
             </div>
         </section>
     </main>
 </body>
-</html>   
+</html>
