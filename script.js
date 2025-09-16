@@ -1,4 +1,4 @@
-// A simple example using a 2D canvas, but a real simulation would use a 3D library like Three.js.
+// A simple example using a 2D canvas with basic pan and zoom functionality.
 const container = document.getElementById('simulation-container');
 const canvas = document.createElement('canvas');
 canvas.width = window.innerWidth;
@@ -13,7 +13,7 @@ const sun = {
     x: canvas.width / 2,
     y: canvas.height / 2,
     radius: 30,
-    color: '#FFD700' // Gold
+    color: '#FFD700'
 };
 
 const planets = [
@@ -25,8 +25,15 @@ const planets = [
     { name: 'Saturn', distance: 350, radius: 18, color: '#E5C088', speed: 0.003, angle: 0 },
     { name: 'Uranus', distance: 420, radius: 14, color: '#87CEEB', speed: 0.002, angle: 0 },
     { name: 'Neptune', distance: 480, radius: 14, color: '#4682B4', speed: 0.0015, angle: 0 }
-    // Note: The distances are scaled for visual clarity, not to scale with actual astronomical units.
 ];
+
+// Variables for camera controls
+let scale = 1.0;
+let offsetX = 0;
+let offsetY = 0;
+let isDragging = false;
+let lastX = 0;
+let lastY = 0;
 
 // Main animation loop
 function animate() {
@@ -35,15 +42,19 @@ function animate() {
     ctx.fillStyle = '#0d0d1a';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+    ctx.save();
+    ctx.translate(canvas.width / 2 + offsetX, canvas.height / 2 + offsetY);
+    ctx.scale(scale, scale);
+
     // Draw the Sun
     ctx.beginPath();
-    ctx.arc(sun.x, sun.y, sun.radius, 0, Math.PI * 2);
+    ctx.arc(0, 0, sun.radius, 0, Math.PI * 2);
     ctx.fillStyle = sun.color;
     ctx.shadowBlur = 50;
     ctx.shadowColor = sun.color;
     ctx.fill();
     ctx.closePath();
-    ctx.shadowBlur = 0; // Reset shadow for other objects
+    ctx.shadowBlur = 0;
 
     // Update and draw planets
     planets.forEach(planet => {
@@ -51,13 +62,12 @@ function animate() {
             planet.angle += planet.speed;
         }
 
-        // Calculate planet position
-        const planetX = sun.x + Math.cos(planet.angle) * planet.distance;
-        const planetY = sun.y + Math.sin(planet.angle) * planet.distance;
+        const planetX = Math.cos(planet.angle) * planet.distance;
+        const planetY = Math.sin(planet.angle) * planet.distance;
 
-        // Draw the planet's orbit path (optional)
+        // Draw the planet's orbit path
         ctx.beginPath();
-        ctx.arc(sun.x, sun.y, planet.distance, 0, Math.PI * 2);
+        ctx.arc(0, 0, planet.distance, 0, Math.PI * 2);
         ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
         ctx.stroke();
 
@@ -68,7 +78,7 @@ function animate() {
         ctx.fill();
         ctx.closePath();
         
-        // Add a special detail for Saturn's rings
+        // Add Saturn's rings
         if (planet.name === 'Saturn') {
             ctx.beginPath();
             ctx.ellipse(planetX, planetY, planet.radius * 2, planet.radius * 0.7, Math.PI / 4, 0, Math.PI * 2);
@@ -77,11 +87,43 @@ function animate() {
             ctx.closePath();
         }
     });
+
+    ctx.restore();
 }
 
 // Event listener for the rotation button
 document.getElementById('toggle-rotation').addEventListener('click', () => {
     rotationEnabled = !rotationEnabled;
+});
+
+// Event listeners for camera controls
+canvas.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    lastX = e.clientX;
+    lastY = e.clientY;
+});
+
+canvas.addEventListener('mousemove', (e) => {
+    if (isDragging) {
+        const deltaX = e.clientX - lastX;
+        const deltaY = e.clientY - lastY;
+        offsetX += deltaX;
+        offsetY += deltaY;
+        lastX = e.clientX;
+        lastY = e.clientY;
+    }
+});
+
+canvas.addEventListener('mouseup', () => {
+    isDragging = false;
+});
+
+canvas.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    const zoomSpeed = 0.001;
+    scale -= e.deltaY * zoomSpeed;
+    if (scale < 0.1) scale = 0.1;
+    if (scale > 5.0) scale = 5.0;
 });
 
 // Start the animation
@@ -91,6 +133,4 @@ animate();
 window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    sun.x = canvas.width / 2;
-    sun.y = canvas.height / 2;
 });
