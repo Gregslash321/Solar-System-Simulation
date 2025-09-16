@@ -96,14 +96,14 @@ document.getElementById('toggle-rotation').addEventListener('click', () => {
     rotationEnabled = !rotationEnabled;
 });
 
-// Event listeners for camera controls
-canvas.addEventListener('mousedown', (e) => {
+// Event listeners for camera controls (FIXED: Moved to 'document' instead of 'canvas')
+document.addEventListener('mousedown', (e) => {
     isDragging = true;
     lastX = e.clientX;
     lastY = e.clientY;
 });
 
-canvas.addEventListener('mousemove', (e) => {
+document.addEventListener('mousemove', (e) => {
     if (isDragging) {
         const deltaX = e.clientX - lastX;
         const deltaY = e.clientY - lastY;
@@ -114,11 +114,11 @@ canvas.addEventListener('mousemove', (e) => {
     }
 });
 
-canvas.addEventListener('mouseup', () => {
+document.addEventListener('mouseup', () => {
     isDragging = false;
 });
 
-canvas.addEventListener('wheel', (e) => {
+document.addEventListener('wheel', (e) => {
     e.preventDefault();
     const zoomSpeed = 0.001;
     scale -= e.deltaY * zoomSpeed;
