@@ -1,29 +1,33 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المحاكاة - اللوحة الكونية</title>
+    <title>Simulation - Cosmic Canvas</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="https://static.vecteezy.com/system/resources/previews/038/188/301/original/solar-system-vecto-icon-vector.jpg" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <script src="script.js" defer></script>
 </head>
 <body>
     <header>
-        <h1>اللوحة الكونية</h1>
+        <h1 id="site-title">Cosmic Canvas</h1>
         <nav>
-            <a href="index.html">الرئيسية</a>
-            <a href="simulation.html">المحاكاة</a>
-            <a href="about.html">حول</a>
+            <a href="index.html" id="nav-home">Home</a>
+            <a href="simulation.html" id="nav-sim">Simulation</a>
+            <a href="about.html" id="nav-about">About</a>
         </nav>
+        <div id="language-switcher">
+            <button onclick="changeLanguage('en')">EN</button>
+            <button onclick="changeLanguage('ar')">AR</button>
+        </div>
     </header>
 
     <main>
         <div id="simulation-container">
             </div>
         <div id="controls">
-            <button id="toggle-rotation">إقاف الدوران</button>
-            <p>استخدم الماوس للتحريك والتكبير</p>
+            <button id="toggle-rotation">Toggle Rotation</button>
+            <p id="control-text">Use your mouse to pan and zoom.</p>
         </div>
         <div id="planet-info" class="hidden">
             <img id="planet-gif" src="" alt="Planet GIF">
