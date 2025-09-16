@@ -30,20 +30,20 @@ function setupSimulation() {
         y: canvas.height / 2,
         radius: 30,
         color: '#FFD700',
-        name: 'The Sun',
-        description: 'The Sun is the star at the center of the Solar System. It is a nearly perfect sphere of hot plasma, with internal convective motion that generates a magnetic field via a dynamo process.',
+        name: 'الشمس',
+        description: 'الشمس هي النجم في مركز النظام الشمسي. وهي عبارة عن كرة شبه مثالية من البلازما الساخنة، مع حركة الحمل الحراري الداخلية التي تولد مجالًا مغناطيسيًا عبر عملية دينامو.',
         gif: 'https://media.giphy.com/media/xT39Da5W1mR2hJ3K12/giphy.gif'
     };
 
     const planets = [
-        { name: 'Mercury', distance: 60, radius: 4, color: '#A9A9A9', speed: 0.03, angle: 0, description: 'Mercury is the smallest planet in the Solar System and the one closest to the Sun. It has a very thin atmosphere, which means it experiences extreme temperature variations.', gif: 'https://media.giphy.com/media/3o7TKr3nzbh5qjBPv2/giphy.gif' },
-        { name: 'Venus', distance: 90, radius: 6, color: '#DAA520', speed: 0.015, angle: 0, description: 'Venus is the second planet from the Sun. It is the hottest planet in our solar system, with a thick, toxic atmosphere that traps heat in a runaway greenhouse effect.', gif: 'https://media.giphy.com/media/xT39Da5W1mR2hJ3K12/giphy.gif' },
-        { name: 'Earth', distance: 130, radius: 8, color: '#4169E1', speed: 0.01, angle: 0, description: 'Earth is the third planet from the Sun and the only astronomical object known to harbor life. Its atmosphere, rich with oxygen and water, makes it habitable.', gif: 'https://media.giphy.com/media/l4pTsh4FuKxR6YcLD/giphy.gif' },
-        { name: 'Mars', distance: 180, radius: 6.5, color: '#FF4500', speed: 0.008, angle: 0, description: 'Mars is the fourth planet from the Sun. Known as the "Red Planet" due to iron oxide on its surface, it has polar ice caps and a thin atmosphere.', gif: 'https://media.giphy.com/media/l4pTsh4FuKxR6YcLD/giphy.gif' },
-        { name: 'Jupiter', distance: 250, radius: 20, color: '#A0522D', speed: 0.004, angle: 0, description: 'Jupiter is the fifth planet from the Sun and the largest in the Solar System. It is a gas giant with a Great Red Spot—a massive, persistent storm larger than Earth.', gif: 'https://media.giphy.com/media/3o7TKr3nzbh5qjBPv2/giphy.gif' },
-        { name: 'Saturn', distance: 350, radius: 18, color: '#E5C088', speed: 0.003, angle: 0, description: 'Saturn is the sixth planet from the Sun, best known for its extensive ring system. It is a gas giant with a composition similar to Jupiter.', gif: 'https://media.giphy.com/media/xT39Da5W1mR2hJ3K12/giphy.gif' },
-        { name: 'Uranus', distance: 420, radius: 14, color: '#87CEEB', speed: 0.002, angle: 0, description: 'Uranus is the seventh planet from the Sun. It is an ice giant that rotates on its side, with a faint ring system and numerous moons.', gif: 'https://media.giphy.com/media/l4pTsh4FuKxR6YcLD/giphy.gif' },
-        { name: 'Neptune', distance: 480, radius: 14, color: '#4682B4', speed: 0.0015, angle: 0, description: 'Neptune is the eighth and farthest known planet from the Sun. It is an ice giant known for its powerful supersonic winds, the fastest in the Solar System.', gif: 'https://media.giphy.com/media/xT39Da5W1mR2hJ3K12/giphy.gif' }
+        { name: 'عطارد', distance: 60, radius: 4, color: '#A9A9A9', speed: 0.03, angle: 0, description: 'عطارد هو أصغر كوكب في النظام الشمسي والأقرب إلى الشمس. له غلاف جوي رقيق جداً، مما يعني أنه يعاني من تقلبات حرارية شديدة.', gif: 'https://media.giphy.com/media/3o7TKr3nzbh5qjBPv2/giphy.gif' },
+        { name: 'الزهرة', distance: 90, radius: 6, color: '#DAA520', speed: 0.015, angle: 0, description: 'الزهرة هو ثاني كوكب من الشمس. وهو أكثر الكواكب حرارة في نظامنا الشمسي، وله غلاف جوي سميك وسام يحتفظ بالحرارة في تأثير الاحتباس الحراري الجامح.', gif: 'https://media.giphy.com/media/xT39Da5W1mR2hJ3K12/giphy.gif' },
+        { name: 'الأرض', distance: 130, radius: 8, color: '#4169E1', speed: 0.01, angle: 0, description: 'الأرض هي ثالث كوكب من الشمس والوحيد المعروف بإيواء الحياة. غلافها الجوي الغني بالأكسجين والماء يجعلها صالحة للعيش.', gif: 'https://media.giphy.com/media/l4pTsh4FuKxR6YcLD/giphy.gif' },
+        { name: 'المريخ', distance: 180, radius: 6.5, color: '#FF4500', speed: 0.008, angle: 0, description: 'المريخ هو رابع كوكب من الشمس. يُعرف باسم "الكوكب الأحمر" بسبب أكسيد الحديد على سطحه، وله قبعات جليدية قطبية وغلاف جوي رقيق.', gif: 'https://media.giphy.com/media/l4pTsh4FuKxR6YcLD/giphy.gif' },
+        { name: 'المشتري', distance: 250, radius: 20, color: '#A0522D', speed: 0.004, angle: 0, description: 'المشتري هو خامس كوكب من الشمس والأكبر في النظام الشمسي. وهو عملاق غازي ذو بقعة حمراء كبيرة—عاصفة هائلة ومستمرة أكبر من الأرض.', gif: 'https://media.giphy.com/media/3o7TKr3nzbh5qjBPv2/giphy.gif' },
+        { name: 'زحل', distance: 350, radius: 18, color: '#E5C088', speed: 0.003, angle: 0, description: 'زحل هو سادس كوكب من الشمس، ويُعرف بنظامه الحلقي الواسع. وهو عملاق غازي ذو تركيبة مماثلة للمشتري.', gif: 'https://media.giphy.com/media/xT39Da5W1mR2hJ3K12/giphy.gif' },
+        { name: 'أورانوس', distance: 420, radius: 14, color: '#87CEEB', speed: 0.002, angle: 0, description: 'أورانوس هو سابع كوكب من الشمس. وهو عملاق جليدي يدور على جانبه، وله نظام حلقي خافت والعديد من الأقمار.', gif: 'https://media.giphy.com/media/l4pTsh4FuKxR6YcLD/giphy.gif' },
+        { name: 'نبتون', distance: 480, radius: 14, color: '#4682B4', speed: 0.0015, angle: 0, description: 'نبتون هو ثامن وأبعد كوكب معروف عن الشمس. وهو عملاق جليدي يُعرف برياحه الأسرع من الصوت، وهي الأسرع في النظام الشمسي.', gif: 'https://media.giphy.com/media/xT39Da5W1mR2hJ3K12/giphy.gif' }
     ];
 
     // Variables for camera controls
@@ -139,7 +139,7 @@ function setupSimulation() {
             ctx.fill();
             ctx.closePath();
             
-            if (planet.name === 'Saturn') {
+            if (planet.name === 'زحل') {
                 ctx.beginPath();
                 ctx.ellipse(planetX, planetY, planet.radius * 2, planet.radius * 0.7, Math.PI / 4, 0, Math.PI * 2);
                 ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
