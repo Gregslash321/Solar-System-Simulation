@@ -37,6 +37,11 @@ nav a:hover {
     color: #fff;
 }
 
+/* Add padding to the main content to prevent it from being hidden by the fixed header */
+main {
+    padding-top: 80px; /* Adjust this value if the header height changes */
+}
+
 /* Parallax Backgrounds */
 .parallax-bg {
     position: fixed;
@@ -57,7 +62,7 @@ nav a:hover {
 .home-content {
     position: relative;
     z-index: 1;
-    min-height: 200vh; /* This makes the page long enough for the parallax effect */
+    min-height: 200vh;
 }
 
 .hero-section {
