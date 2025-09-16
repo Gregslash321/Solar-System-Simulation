@@ -8,7 +8,7 @@ body {
 
 header {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-evenly; /* Adjusted for better spacing */
     align-items: center;
     padding: 20px 40px;
     background-color: rgba(25, 25, 51, 0.5);
@@ -37,12 +37,26 @@ nav a:hover {
     color: #fff;
 }
 
-/* Fix for the main content being cut off by the header */
-main {
-    padding-top: 80px; /* This value should be roughly the height of the header */
+#language-switcher button {
+    background: none;
+    color: #b3b3e6;
+    border: 1px solid #b3b3e6;
+    padding: 5px 10px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-/* Parallax Backgrounds */
+#language-switcher button:hover {
+    background-color: #5555ff;
+    border-color: #5555ff;
+    color: #fff;
+}
+
+main {
+    padding-top: 80px;
+}
+
 .parallax-bg {
     position: fixed;
     top: 0;
@@ -52,13 +66,13 @@ main {
     background-position: center;
     background-size: cover;
     z-index: -1;
+    background-attachment: fixed;
 }
 
-#parallax-bg-1 { background-image: url('stars.jpg'); transform: translateZ(0); }
-#parallax-bg-2 { background-image: url('nebula.jpg'); transform: translateZ(-1px); }
-#parallax-bg-3 { background-image: url('galaxy.jpg'); transform: translateZ(-2px); }
+#parallax-bg-1 { background-image: url('stars.jpg'); }
+#parallax-bg-2 { background-image: url('nebula.jpg'); }
+#parallax-bg-3 { background-image: url('galaxy.jpg'); }
 
-/* Home Page Content */
 .home-content {
     position: relative;
     z-index: 1;
@@ -114,7 +128,6 @@ main {
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* Simulation Page */
 #simulation-container {
     width: 100%;
     height: 100vh;
@@ -152,7 +165,6 @@ main {
     background-color: #6666ff;
 }
 
-/* About Page */
 .about-content {
     padding: 100px 50px;
     max-width: 800px;
@@ -164,7 +176,6 @@ main {
     text-align: justify;
 }
 
-/* Add these styles to your existing style.css file */
 #planet-info {
     position: absolute;
     top: 50%;
@@ -202,3 +213,7 @@ main {
     font-size: 1em;
     line-height: 1.5;
 }
+
+/* RTL-specific adjustments */
+[dir="rtl"] nav a { margin-left: 0; margin-right: 25px; }
+[dir="rtl"] .about-content { text-align: right; }
