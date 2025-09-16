@@ -14,7 +14,7 @@ function setupParallax() {
 // Function to handle the 2D simulation
 function setupSimulation() {
     const container = document.getElementById('simulation-container');
-    if (!container) return; // Exit if not on the simulation page
+    if (!container) return;
 
     const canvas = document.createElement('canvas');
     canvas.width = window.innerWidth;
@@ -24,23 +24,26 @@ function setupSimulation() {
     const ctx = canvas.getContext('2d');
     let rotationEnabled = true;
 
-    // Define celestial bodies
+    // Define celestial bodies with descriptions and GIF URLs
     const sun = {
         x: canvas.width / 2,
         y: canvas.height / 2,
         radius: 30,
-        color: '#FFD700'
+        color: '#FFD700',
+        name: 'The Sun',
+        description: 'The Sun is the star at the center of the Solar System. It is a nearly perfect sphere of hot plasma, with internal convective motion that generates a magnetic field via a dynamo process.',
+        gif: 'https://media.giphy.com/media/xT39Da5W1mR2hJ3K12/giphy.gif'
     };
 
     const planets = [
-        { name: 'Mercury', distance: 60, radius: 4, color: '#A9A9A9', speed: 0.03, angle: 0 },
-        { name: 'Venus', distance: 90, radius: 6, color: '#DAA520', speed: 0.015, angle: 0 },
-        { name: 'Earth', distance: 130, radius: 8, color: '#4169E1', speed: 0.01, angle: 0 },
-        { name: 'Mars', distance: 180, radius: 6.5, color: '#FF4500', speed: 0.008, angle: 0 },
-        { name: 'Jupiter', distance: 250, radius: 20, color: '#A0522D', speed: 0.004, angle: 0 },
-        { name: 'Saturn', distance: 350, radius: 18, color: '#E5C088', speed: 0.003, angle: 0 },
-        { name: 'Uranus', distance: 420, radius: 14, color: '#87CEEB', speed: 0.002, angle: 0 },
-        { name: 'Neptune', distance: 480, radius: 14, color: '#4682B4', speed: 0.0015, angle: 0 }
+        { name: 'Mercury', distance: 60, radius: 4, color: '#A9A9A9', speed: 0.03, angle: 0, description: 'Mercury is the smallest planet in the Solar System and the one closest to the Sun. It has a very thin atmosphere, which means it experiences extreme temperature variations.', gif: 'https://media.giphy.com/media/3o7TKr3nzbh5qjBPv2/giphy.gif' },
+        { name: 'Venus', distance: 90, radius: 6, color: '#DAA520', speed: 0.015, angle: 0, description: 'Venus is the second planet from the Sun. It is the hottest planet in our solar system, with a thick, toxic atmosphere that traps heat in a runaway greenhouse effect.', gif: 'https://media.giphy.com/media/xT39Da5W1mR2hJ3K12/giphy.gif' },
+        { name: 'Earth', distance: 130, radius: 8, color: '#4169E1', speed: 0.01, angle: 0, description: 'Earth is the third planet from the Sun and the only astronomical object known to harbor life. Its atmosphere, rich with oxygen and water, makes it habitable.', gif: 'https://media.giphy.com/media/l4pTsh4FuKxR6YcLD/giphy.gif' },
+        { name: 'Mars', distance: 180, radius: 6.5, color: '#FF4500', speed: 0.008, angle: 0, description: 'Mars is the fourth planet from the Sun. Known as the "Red Planet" due to iron oxide on its surface, it has polar ice caps and a thin atmosphere.', gif: 'https://media.giphy.com/media/l4pTsh4FuKxR6YcLD/giphy.gif' },
+        { name: 'Jupiter', distance: 250, radius: 20, color: '#A0522D', speed: 0.004, angle: 0, description: 'Jupiter is the fifth planet from the Sun and the largest in the Solar System. It is a gas giant with a Great Red Spot—a massive, persistent storm larger than Earth.', gif: 'https://media.giphy.com/media/3o7TKr3nzbh5qjBPv2/giphy.gif' },
+        { name: 'Saturn', distance: 350, radius: 18, color: '#E5C088', speed: 0.003, angle: 0, description: 'Saturn is the sixth planet from the Sun, best known for its extensive ring system. It is a gas giant with a composition similar to Jupiter.', gif: 'https://media.giphy.com/media/xT39Da5W1mR2hJ3K12/giphy.gif' },
+        { name: 'Uranus', distance: 420, radius: 14, color: '#87CEEB', speed: 0.002, angle: 0, description: 'Uranus is the seventh planet from the Sun. It is an ice giant that rotates on its side, with a faint ring system and numerous moons.', gif: 'https://media.giphy.com/media/l4pTsh4FuKxR6YcLD/giphy.gif' },
+        { name: 'Neptune', distance: 480, radius: 14, color: '#4682B4', speed: 0.0015, angle: 0, description: 'Neptune is the eighth and farthest known planet from the Sun. It is an ice giant known for its powerful supersonic winds, the fastest in the Solar System.', gif: 'https://media.giphy.com/media/xT39Da5W1mR2hJ3K12/giphy.gif' }
     ];
 
     let scale = 1.0;
@@ -49,6 +52,11 @@ function setupSimulation() {
     let isDragging = false;
     let lastX = 0;
     let lastY = 0;
+
+    const planetInfoBox = document.getElementById('planet-info');
+    const planetName = document.getElementById('planet-name');
+    const planetDescription = document.getElementById('planet-description');
+    const planetGif = document.getElementById('planet-gif');
 
     function animate() {
         requestAnimationFrame(animate);
@@ -60,6 +68,7 @@ function setupSimulation() {
         ctx.translate(canvas.width / 2 + offsetX, canvas.height / 2 + offsetY);
         ctx.scale(scale, scale);
 
+        // Draw sun
         ctx.beginPath();
         ctx.arc(0, 0, sun.radius, 0, Math.PI * 2);
         ctx.fillStyle = sun.color;
@@ -77,11 +86,13 @@ function setupSimulation() {
             const planetX = Math.cos(planet.angle) * planet.distance;
             const planetY = Math.sin(planet.angle) * planet.distance;
 
+            // Draw orbit
             ctx.beginPath();
             ctx.arc(0, 0, planet.distance, 0, Math.PI * 2);
             ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
             ctx.stroke();
 
+            // Draw planet
             ctx.beginPath();
             ctx.arc(planetX, planetY, planet.radius, 0, Math.PI * 2);
             ctx.fillStyle = planet.color;
@@ -98,6 +109,51 @@ function setupSimulation() {
         });
         ctx.restore();
     }
+
+    // New event listener for clicking on planets
+    canvas.addEventListener('click', (e) => {
+        const clickX = e.clientX - canvas.getBoundingClientRect().left;
+        const clickY = e.clientY - canvas.getBoundingClientRect().top;
+        
+        // Adjust for pan and zoom
+        const transformedX = (clickX - (canvas.width / 2 + offsetX)) / scale;
+        const transformedY = (clickY - (canvas.height / 2 + offsetY)) / scale;
+        
+        let foundPlanet = false;
+
+        // Check if a planet was clicked
+        planets.forEach(planet => {
+            const planetX = Math.cos(planet.angle) * planet.distance;
+            const planetY = Math.sin(planet.angle) * planet.distance;
+
+            // Distance from click to planet center
+            const distance = Math.sqrt((transformedX - planetX) ** 2 + (transformedY - planetY) ** 2);
+            
+            if (distance < planet.radius) {
+                foundPlanet = true;
+                planetInfoBox.classList.remove('hidden');
+                planetName.textContent = planet.name;
+                planetDescription.textContent = planet.description;
+                planetGif.src = planet.gif;
+                return;
+            }
+        });
+        
+        // Check if the Sun was clicked
+        const sunDistance = Math.sqrt((transformedX - 0) ** 2 + (transformedY - 0) ** 2);
+        if (sunDistance < sun.radius) {
+            foundPlanet = true;
+            planetInfoBox.classList.remove('hidden');
+            planetName.textContent = sun.name;
+            planetDescription.textContent = sun.description;
+            planetGif.src = sun.gif;
+        }
+
+        // Hide info box if no planet was clicked
+        if (!foundPlanet) {
+            planetInfoBox.classList.add('hidden');
+        }
+    });
 
     document.getElementById('toggle-rotation').addEventListener('click', () => {
         rotationEnabled = !rotationEnabled;
