@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulation - Cosmic Canvas</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <script src="script.js" defer></script>
 </head>
 <body>
@@ -16,5 +17,19 @@
             <a href="about.html">About</a>
         </nav>
     </header>
+
+    <main>
+        <div id="simulation-container">
+            </div>
+        <div id="controls">
+            <button id="toggle-rotation">Toggle Rotation</button>
+            <p>Use your mouse to pan and zoom.</p>
+        </div>
+        <div id="planet-info" class="hidden">
+            <img id="planet-gif" src="" alt="Planet GIF">
+            <h3 id="planet-name"></h3>
+            <p id="planet-description"></p>
+        </div>
+    </main>
 </body>
 </html>
