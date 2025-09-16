@@ -3,10 +3,7 @@ body {
     font-family: Arial, sans-serif;
     background-color: #0d0d1a;
     color: #e6e6ff;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+    overflow-x: hidden;
 }
 
 header {
@@ -16,7 +13,7 @@ header {
     padding: 20px 40px;
     background-color: rgba(25, 25, 51, 0.5);
     backdrop-filter: blur(5px);
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 100%;
     z-index: 100;
@@ -40,9 +37,86 @@ nav a:hover {
     color: #fff;
 }
 
+/* Parallax Backgrounds */
+.parallax-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    z-index: -1;
+}
+
+#parallax-bg-1 { background-image: url('stars.jpg'); transform: translateZ(0); }
+#parallax-bg-2 { background-image: url('nebula.jpg'); transform: translateZ(-1px); }
+#parallax-bg-3 { background-image: url('galaxy.jpg'); transform: translateZ(-2px); }
+
+/* Home Page Content */
+.home-content {
+    position: relative;
+    z-index: 1;
+    min-height: 200vh; /* This makes the page long enough for the parallax effect */
+}
+
+.hero-section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.hero-tagline {
+    font-size: 4em;
+    margin-bottom: 20px;
+}
+
+.launch-btn {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    background-color: #5555ff;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.launch-btn:hover {
+    background-color: #6666ff;
+}
+
+.features-section {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 100px 50px;
+    background-color: #0d0d1a;
+}
+
+.feature-card {
+    background: rgba(25, 25, 51, 0.8);
+    backdrop-filter: blur(5px);
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 300px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Simulation Page */
 #simulation-container {
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
 }
 
 #controls {
@@ -71,4 +145,16 @@ nav a:hover {
 
 #toggle-rotation:hover {
     background-color: #6666ff;
+}
+
+/* About Page */
+.about-content {
+    padding: 100px 50px;
+    max-width: 800px;
+    margin: auto;
+    background-color: rgba(13, 13, 26, 0.9);
+    backdrop-filter: blur(5px);
+    border-radius: 15px;
+    margin-top: 100px;
+    text-align: justify;
 }
