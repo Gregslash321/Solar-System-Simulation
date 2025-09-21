@@ -19,6 +19,11 @@ header {
     z-index: 100;
 }
 
+.logo { /* New style for the logo */
+    height: 40px; /* Adjust as needed */
+    margin-right: 20px; /* Space between logo and h1 */
+}
+
 header h1 {
     margin: 0;
     font-size: 2.5em;
@@ -202,3 +207,9 @@ main {
 [dir="rtl"] header h1 { text-align: right; }
 [dir="rtl"] nav a { margin-left: 0; margin-right: 25px; }
 [dir="rtl"] .about-content { text-align: right; }
+
+/* Further RTL adjustment for logo */
+[dir="rtl"] .logo {
+    margin-left: 20px; /* Space between logo and h1 */
+    margin-right: 0; /* Remove default margin-right */
+}
