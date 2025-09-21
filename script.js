@@ -32,18 +32,18 @@ function setupSimulation() {
         color: '#FFD700',
         name: 'الشمس',
         description: 'الشمس هي النجم في مركز النظام الشمسي. وهي عبارة عن كرة شبه مثالية من البلازما الساخنة، مع حركة الحمل الحراري الداخلية التي تولد مجالًا مغناطيسيًا عبر عملية دينامو.',
-        gif: 'https://media.giphy.com/media/xT39Da5W1mR2hJ3K12/giphy.gif'
+        gif: 'https://i.imgur.com/gK0qjX9.gif'
     };
 
     const planets = [
-        { name: 'عطارد', distance: 60, radius: 4, color: '#A9A9A9', speed: 0.03, angle: 0, description: 'عطارد هو أصغر كوكب في النظام الشمسي والأقرب إلى الشمس. له غلاف جوي رقيق جداً، مما يعني أنه يعاني من تقلبات حرارية شديدة.', gif: 'https://media.giphy.com/media/3o7TKr3nzbh5qjBPv2/giphy.gif' },
-        { name: 'الزهرة', distance: 90, radius: 6, color: '#DAA520', speed: 0.015, angle: 0, description: 'الزهرة هو ثاني كوكب من الشمس. وهو أكثر الكواكب حرارة في نظامنا الشمسي، وله غلاف جوي سميك وسام يحتفظ بالحرارة في تأثير الاحتباس الحراري الجامح.', gif: 'https://media.giphy.com/media/xT39Da5W1mR2hJ3K12/giphy.gif' },
-        { name: 'الأرض', distance: 130, radius: 8, color: '#4169E1', speed: 0.01, angle: 0, description: 'الأرض هي ثالث كوكب من الشمس والوحيد المعروف بإيواء الحياة. غلافها الجوي الغني بالأكسجين والماء يجعلها صالحة للعيش.', gif: 'https://media.giphy.com/media/l4pTsh4FuKxR6YcLD/giphy.gif' },
-        { name: 'المريخ', distance: 180, radius: 6.5, color: '#FF4500', speed: 0.008, angle: 0, description: 'المريخ هو رابع كوكب من الشمس. يُعرف باسم "الكوكب الأحمر" بسبب أكسيد الحديد على سطحه، وله قبعات جليدية قطبية وغلاف جوي رقيق.', gif: 'https://media.giphy.com/media/l4pTsh4FuKxR6YcLD/giphy.gif' },
-        { name: 'المشتري', distance: 250, radius: 20, color: '#A0522D', speed: 0.004, angle: 0, description: 'المشتري هو خامس كوكب من الشمس والأكبر في النظام الشمسي. وهو عملاق غازي ذو بقعة حمراء كبيرة—عاصفة هائلة ومستمرة أكبر من الأرض.', gif: 'https://media.giphy.com/media/3o7TKr3nzbh5qjBPv2/giphy.gif' },
-        { name: 'زحل', distance: 350, radius: 18, color: '#E5C088', speed: 0.003, angle: 0, description: 'زحل هو سادس كوكب من الشمس، ويُعرف بنظامه الحلقي الواسع. وهو عملاق غازي ذو تركيبة مماثلة للمشتري.', gif: 'https://media.giphy.com/media/xT39Da5W1mR2hJ3K12/giphy.gif' },
-        { name: 'أورانوس', distance: 420, radius: 14, color: '#87CEEB', speed: 0.002, angle: 0, description: 'أورانوس هو سابع كوكب من الشمس. وهو عملاق جليدي يدور على جانبه، وله نظام حلقي خافت والعديد من الأقمار.', gif: 'https://media.giphy.com/media/l4pTsh4FuKxR6YcLD/giphy.gif' },
-        { name: 'نبتون', distance: 480, radius: 14, color: '#4682B4', speed: 0.0015, angle: 0, description: 'نبتون هو ثامن وأبعد كوكب معروف عن الشمس. وهو عملاق جليدي يُعرف برياحه الأسرع من الصوت، وهي الأسرع في النظام الشمسي.', gif: 'https://media.giphy.com/media/xT39Da5W1mR2hJ3K12/giphy.gif' }
+        { name: 'عطارد', distance: 60, radius: 4, color: '#A9A9A9', speed: 0.03, angle: 0, description: 'عطارد هو أصغر كوكب في النظام الشمسي والأقرب إلى الشمس. له غلاف جوي رقيق جداً، مما يعني أنه يعاني من تقلبات حرارية شديدة.', gif: 'https://i.imgur.com/8Qj8j3D.gif' },
+        { name: 'الزهرة', distance: 90, radius: 6, color: '#DAA520', speed: 0.015, angle: 0, description: 'الزهرة هو ثاني كوكب من الشمس. وهو أكثر الكواكب حرارة في نظامنا الشمسي، وله غلاف جوي سميك وسام يحتفظ بالحرارة في تأثير الاحتباس الحراري الجامح.', gif: 'https://i.imgur.com/Kz8FhXQ.gif' },
+        { name: 'الأرض', distance: 130, radius: 8, color: '#4169E1', speed: 0.01, angle: 0, description: 'الأرض هي ثالث كوكب من الشمس والوحيد المعروف بإيواء الحياة. غلافها الجوي الغني بالأكسجين والماء يجعلها صالحة للعيش.', gif: 'https://i.imgur.com/qL6pA6l.gif' },
+        { name: 'المريخ', distance: 180, radius: 6.5, color: '#FF4500', speed: 0.008, angle: 0, description: 'المريخ هو رابع كوكب من الشمس. يُعرف باسم "الكوكب الأحمر" بسبب أكسيد الحديد على سطحه، وله قبعات جليدية قطبية وغلاف جوي رقيق.', gif: 'https://i.imgur.com/5S907yC.gif' },
+        { name: 'المشتري', distance: 250, radius: 20, color: '#A0522D', speed: 0.004, angle: 0, description: 'المشتري هو خامس كوكب من الشمس والأكبر في النظام الشمسي. وهو عملاق غازي ذو بقعة حمراء كبيرة—عاصفة هائلة ومستمرة أكبر من الأرض.', gif: 'https://i.imgur.com/k6lP09r.gif' },
+        { name: 'زحل', distance: 350, radius: 18, color: '#E5C088', speed: 0.003, angle: 0, description: 'زحل هو سادس كوكب من الشمس، ويُعرف بنظامه الحلقي الواسع. وهو عملاق غازي ذو تركيبة مماثلة للمشتري.', gif: 'https://i.imgur.com/cE06D12.gif' },
+        { name: 'أورانوس', distance: 420, radius: 14, color: '#87CEEB', speed: 0.002, angle: 0, description: 'أورانوس هو سابع كوكب من الشمس. وهو عملاق جليدي يدور على جانبه، وله نظام حلقي خافت والعديد من الأقمار.', gif: 'https://i.imgur.com/uR2iR0H.gif' },
+        { name: 'نبتون', distance: 480, radius: 14, color: '#4682B4', speed: 0.0015, angle: 0, description: 'نبتون هو ثامن وأبعد كوكب معروف عن الشمس. وهو عملاق جليدي يُعرف برياحه الأسرع من الصوت، وهي الأسرع في النظام الشمسي.', gif: 'https://i.imgur.com/Pq9tJb1.gif' }
     ];
 
     // Variables for camera controls
@@ -208,4 +208,6 @@ if (document.querySelector('.home-content')) {
     setupParallax();
 } else if (document.getElementById('simulation-container')) {
     setupSimulation();
+} else if (document.querySelector('.about-content')) {
+    setupParallax();
 }
